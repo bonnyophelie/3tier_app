@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install the dependencies
-RUN npm install
+RUN npm config set strict-ssl false && \
+    npm install -g npm@latest
 
 # Copy the rest of the application's source code to the container
 COPY . .

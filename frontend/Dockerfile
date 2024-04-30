@@ -8,13 +8,15 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install the dependencies
-RUN npm install
+RUN npm config set strict-ssl false && \
+    npm install -g npm@latest
 
 # Copy the rest of the application's source code to the container
 COPY . .
 
 # Build the React.js application
-RUN npm run build
+RUN npm install react-scripts && \
+    npm run build
 
 # Expose the port that the application listens on
 EXPOSE 3001
